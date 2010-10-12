@@ -1,0 +1,92 @@
+=学习sns基础js=
+sys/js/sns-base.js(看完)
+sys/js/sns-helper.js(结合yui.js一起看)
+----
+yui.js里面的augmentObject方法里面调用了_IEEnumfix的方法，这个是修正ie下面不枚举一些和Object对象重名的属性
+在yahoo.js里面看了一些augmentObject
+getAncensterByXXXX();都是沿用了getAncensterBy这个函数，这里有一个方法_testElement()
+
+
+
+在sns-helper里面看到了一个对dom的selection操作的实例，做了一个demo
+
+几种高度和宽度值
+    
+[[https://cacoo.com/diagrams/dWWGTqryaNfi9MWr-58098.png]]
+
+screen.width        屏幕的宽度;
+
+screen.height       屏幕的高度;
+
+screen.colorDepth:  屏幕色深(位), 如32;
+
+screen.pixelDepth:  同上, 但IE不支持, 他与colorDepth的区别在于一些老的X-client允许应用程序自定义颜色语法, 那么他的colorDepth就取决于应用程序自己, pixelDepth则一直是显示器颜色位数;
+
+=== window ===
+IE下都为undefined;
+window.innerWidth/innerHeight: 浏览器窗口内部宽高, 如1280/899, 如上图中 c 框的宽高;
+
+window.outerWidth/outerHeight: 整个浏览器窗口宽高, 包括任务菜单栏, 如窗口最大化时,1296/1000, 会超过屏幕宽度, 如上图中 d 框的宽高;
+
+window.pageXoffset/pageYoffset: 整个页面被滚动掉的像素数, 当出现滚动条并且被滚动区域的X/Y偏移, 如pageYoffset对应上图中 e 高度;
+
+window.screenX/screenY: 浏览器窗口在屏幕上的位置, 相对于左上角, 可能是负值, opera下不正确, 如上图点f在屏幕上的位置;
+
+
+另外一些window相关的方法:
+1) window.resizeTo(x,y) : 重设窗口宽高;
+
+2) window.moveTo(x, y) : 移动到某位置;
+
+3) window.focuse() : 使窗口获得焦点;
+
+4) window.scroll(x,y)/scrollTo(x, y) : 窗口滚动到指定x,y距离;
+
+5) window.onload = ... : window加载完毕后;
+
+=== document/element ===
+document.elementFromPoint(x, y): 获取文档上x,y坐标点对应的元素;
+
+document.documentElement.clientWidth/clientHeight: 文档内容的宽和高;
+
+document.documentElement.scrollTop/scrollLeft: 文档滚动了多少;
+
+elem.getBoundingClientRect(): 获得元素相对于 viewport 的区域, left, top, right, bottom围城的区域, 包含元素边距和边框的;
+
+elem.getClientRects(): 同上类似, 但可以获得这个elem内所有子 box 的区域;
+
+elem.scrollIntoView(): 将elem滚动到可视区域;
+
+elem.clientLeft/clientTop: 元素的内容左上角相对于整个元素左上角位置,(包含边框), 如上图 g处;
+
+elem.clientWidth/clientHeight: 不包含边框边距的内容宽高, 但有包含滚动条, 如上图 h 虚线框;
+
+elem.offsetLeft/offsetTop: 相对于 OffsetParent 的左上角位置, 如上图 i 位置;
+
+elem.offsetParent: 包含这个元素的父元素的位置, 这个父元素的position不能是 static, 如果不幸父元素们都是static, 就用body;
+
+elem.offsetWidth/offsetHeight: 元素的整个宽高, 包含边框, 如上图 j 框宽高;
+
+elem.scrollLeft/scrollTop: 元素滚动了多少像素, 可读写;
+
+elem.scrollWidth/scrollHeight: 内容宽高, 包含被overlfow:hidden掉的内容, 如果没有隐藏掉, 和clientWidth和clientHeight一致;
+
+
+
+
+=== e ===
+e.clientX/clientY: 相对于 viewport 的位置, 如上图 k;
+
+e.offsetX/offsetY: 相对于 触发事件的目标元素的位置, 如上图 m;
+
+e.pageX/pageY: 相对于 document 的位置, 如上图 n;
+
+e.screenX/screenY: 相对于 屏幕 位置, 如上图 o;
+
+e.x/y: 同 clientX/clientY;
+
+
+
+=== NODETYPE ===
+1----ELEMENT_NOTE
+2----ATTRIBUTE_NODE

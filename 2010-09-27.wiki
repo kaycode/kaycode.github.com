@@ -1,0 +1,86 @@
+==tip==
+https://developer.mozilla.org/en/window.setTimeout   学习了setTimeout的一些知识
+
+var aa = setTimeout(func,time,[param1,param2....])后面的param在ie下面不起作用
+var aa = setTimeout(code,time)
+总共有两种写法
+
+==sns文件阅读==
+触发ie的reflow：
+添加一个css样式，之后再去除掉
+
+
+sns-helper.js里面有一个给textarea添加maxlength的方法，这个在淘工作里面其实也有用到，我需要把两段给对比一下，
+sns的实现主要是给textarea添加了事件绑定了一个截取函数，然后定义了几种事件类型，keyup/keydown/blur/change/paste
+其中使用了一个delegate函数，这个函数是在各种事件触发的时候执行的，也就是说这个函数本身是一个事件的callback，这个方法是为了？它传入了一个className,fn,callback；
+在源码里面可以看到如果事件对象存在className，先执行fn（ev），然后就把事件对象传入callback的参数里面，callback可有可无，最后返回一个function给{{{AddMaxLenSupport}}},这个函数可以传入的是容器元素，限制的最大值，想要限制的textarea的className，还有回调函数。回调函数里面可以做一些诸如弹窗等的操作
+
+
+sns-helper里面还包含了一些对文本区域操作的方法，主要是针对ie做的一些修补的工作
+最后的一段是复制了tb.simplePopup的一些修改。
+
+文件还对一些用户的状态做了一些判断
+对一些IE的选区问题做了一些修改
+引入旺旺点灯的脚本
+创建全局的回调函数
+
+==YUI学习==
+===DOM===
+昨天看了一些get近邻元素的方法
+有一个基础的方法_testElement();
+
+getAncestorBy引出了
+  - getAncestorByClassName
+  - getAncestorByTagName
+
+getPreviousSiblingBy引出了
+  - getPreviousSibling
+
+getNextSiblingBy引出了
+  - getNextSibling
+
+getFirstChildBy引出了
+  - getFirstChild
+
+getLastChildBy引出了
+  - getLastChild
+
+
+还有一系列的取得各种高度和宽度的方法
+
+还有就是修改dom的方法
+
+insertBefore-在某个元素之前插入元素
+
+setAttribute方法对原方法做了封装。
+里面调用了一个_toCamel方法主要是为了把html-style这个的属性转化为{{{CamelCase}}}
+
+
+
+batch方法:
+把每一个元素都作为method的一个作用域，用于执行method函数，另外o参数作为额外的参数传入method执行
+
+===Event-事件===
+====Custom-Event====
+{{{CustomEvent}}}可以传入5个参数，事件的类型（type），事件函数执行的上下文（context），是否输出debug（silent）,事件订阅者处理事件的方式（signature），是否只执行一次（fireOnce），
+{{{CustomEvent}}}类的方法
+  - subscribe(fn,obj,context)第三个参数是执行的上下文
+  - unsubscribe(fn,obj)
+  - fire()表示执行的方法
+  - notify
+  - unsubscribeAll
+  - _delete(私有)
+  - toString
+
+
+
+
+this.fired初始化了事件触发的情况
+
+
+
+==vim学习==
+
+vim分栏：:split :vsplit
+
+vim搜索：?XXX 向前搜索 /XXX向后搜索 n向后继续搜索 N向前继续搜索

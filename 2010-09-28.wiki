@@ -1,0 +1,37 @@
+==tip阅读==
+http://yiminghe.javaeye.com/blog/422434
+关于{{{JavaScript}}}内存泄露的问题
+
+===tip===
+val1 > val2 ？ val1 : val1 快于Math.min
+arr[arr.length] = newEl 快于 arr.push
+
+==YUI==
+===Event部分阅读===
+try {
+...    
+} catch(e) {
+...
+throw
+...
+}
+Y.u.Subscriber.prototype.getScope
+Y.u.Event.getEvent---获取触发函数的事件
+理解{{{JavaScript}}}的caller、callee、call、apply：
+http://www.javaeye.com/topic/202614
+caller是在函数被调用的时候才会出现的一个属性，就是函数被执行的外部
+yui自定义事件
+http://hi.baidu.com/lijing00333/blog/item/79d5c8468c1b3046500ffeb2.html
+
+
+
+== 杂 ==
+Closure Lint
+http://code.google.com/intl/zh-CN/closure/utilities/docs/linter_howto.html
+==搭建review board==
+
+==周会==
+
+前端的代码里面尽量不要去涉及过多的业务的东西
+
+前端单元测试

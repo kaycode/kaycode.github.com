@@ -1,0 +1,64 @@
+==tip学习==
+[http://www.javaeye.com/topic/775445]
+{{{
+function mouseCoordination(michael){   
+    //以下主要是对不同浏览器进行兼容操作  
+     if(michael.pageX || michael.pageY){   
+//IE不支持pageX之类的 这里主要是对于chrome 和firefox之类的浏览器  
+      return {x:michael.pageX, y:michael.pageY};   
+      }   
+      else return {   
+//以下是IE浏览器的操作动作 至于为什么这么写 待会看图就会明白  
+       x:michael.clientX + document.body.scrollLeft - document.body.clientLeft,   
+       y:michael.clientY + document.body.scrollTop  - document.body.clientTop   
+       };   
+         
+}   
+  
+function mouseMove(michael){   
+   michaelmichael = michael || window.event; //不知为什么 显示出来 就是多了个michael 应该前面变量只有一个michael的  
+    var mouseCoo = mouseCoordination(michael);   
+    document.getElementById('xCoordination').value = mouseCoo.x;   
+    document.getElementById('yCoordination').value = mouseCoo.y;   
+}   
+document.onmousemove = mouseMove;   
+}}}
+
+[[http://hduyou.javaeye.com/upload/picture/pic/73258/d6d867a7-1c3d-3c58-886b-ccb5952faa91.gif]]
+
+==还剩余的任务==
+  - p4p广告的一个问题的修复
+  - 瑄妃的页头制作
+
+==单元测试学习==
+===Module方法===
+QUnit里面的module方法调用了synchronize函数
+====synchronize====
+对synchronize函数传入了一个function
+实际上传入的这个function是一个callback，有一个config.queue来存储这个callback，
+当config.autorun并且config.blocking不进行的时候，开始处理process()
+====process()====
+process就是对config.queue里面的callback进行一个执行，process会记录一个执行的开始时间。
+如果目前的时间和开始的时间差小于设定的config.updateRate，那么就立即执行。否则就在13毫秒后执行process
+====Module====
+回过头再来看module里面的synchronize方法
+里面根据config的currentModule来判断是否立即执行moduleDone函数
+否则的话就进行config配置，之后调用moduleStart方法
+
+moduleDone是一个空函数。。。。
+调用了extend方法，转而看看extend方法
+结果发现是一个很简单的函数
+{{{
+    function extend(a,b){
+        for (var prop in b ){
+            a[prop] = b[prop];
+        }
+        return a;
+    }
+}}}
+就是为了把b的属性都复制给a一份
+再来看extend(QUnit，{。。。})
+
+
+
+

@@ -1,0 +1,11 @@
+=学习=
+==用github+Vimwiki管理自己的知识==
+
+首先我们要按照vimwiki，这个之前有描述，这里就不赘述了。
+之后我们要在github上面建立一个版本库。
+基本能在github上面搭建一个自己的blog
+
+==YUI的学习==
+===Dom===
+  - 定义的开始定义了CUSTOM_ATTRIBUTES和DOM_ATTRIBUTE
+  - 把函数里面的一些变量定义在函数的开头部分，YUI是使用的这种风格

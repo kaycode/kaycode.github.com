@@ -1,0 +1,21 @@
+==淘分享==
+===问题===
+1、tab颜色
+2、列表图片mockup里面为100x100，现有尺寸貌似没有100x100的吧
+===temp===
+
+
+<p class="operate"><a href="#" class="share-btn">立刻分享</a>
+				<span>可得<strong class="price">20</strong>淘金币</span></p>
+
+<a href="#" class="evaluate-btn">立刻评价</a>
+		printf('<div class="status J_ChangePermission"><p><span>仅好友可见</span> <a href="#" class="p-edit">修改</a></p><p class="hidden"><select data-url="mod/json.php?action=permission" data-jw=""><option value="0">所有人可见</option><option value="1">仅好友可见</option><option value="2">仅自己可见</option></select><a href="http://demo.ued.taobao.net/ziya/test/changePermission.php?id=1&buyerId=2" class="p-save">取消</a></p></div>');
+		printf('<p class="status"><span>仅好友可见</span></p>');	
+
+==things==
+1、规则部
+2、社会责任部
+
+==前端先遣队-突击==
+乔福：项目环境搭建（负责项目环境搭建，维护和优化，建立一个良好的协同开发环境，如文件组织方式，各种工具等）
+

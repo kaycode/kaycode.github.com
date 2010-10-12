@@ -1,0 +1,66 @@
+==拔赤的ppt学习==
+===前端安全===
+====XSS====
+往html插入恶意html代码，网页运行就会被执行，比如input框输入，又如存在一个get参数传给的是一个iframe的src，都可能注入
+  - 基于DOM的XSS，页面里面的一些表单元素、location等
+  - 直接将form或者query中的字符带到页面中
+  - 基于字符集的攻击（http://www.51cto.com/art/200806/78045.htm）
+====CSRF====
+===js设计模式===
+单体模式：
+工厂：
+观察者模式：
+装饰者
+
+==YUI学习==
+===一、自定义事件===
+
+自定义事件的使用主要就是实例化一个{{{JavaScript}}}自定义事件对象，通过这个对象的fire来定义具体这个事件在哪里触发。通过自定义事件对象的subscribe来绑定哪些函数会在自定义事件触发时执行。
+
+====流程====
+CE->fire()->fn1,fn2
+
+CE本身就得保存有fn1，fn2的一个列表这样子才可能在fire的时候去触发fn1，fn2也触发执行
+
+====CE.subscribers====
+
+这个列表就是this.subscribers数组，是在CE定义的时候同时定义的。
+====CE.subscribe====
+然后我在CE的subscribe方法里面看到了Y.u.subscriber对象（一会儿分析），其实这个subscriber是用来管理*subscribers*数组的
+
+====s.contains====
+在subscriber对象上有一个方法，contains（fn，obj），如果有obj那么看一下这个fn和obj是不是在subscriber里面有定义，没有返回false。如果obj不传入，只检查fn。
+
+====CE.unsubscribe()====
+这个方法是用来解除绑定，如果没有指定特定的函数，那么就全部解除绑定，否则就在subscribers数组里面找，如果有这样的一个subscriber，那么就delete，并会有一个标记（found变量）记录，找到了。
+
+====CE.fire()====
+这个方法定义了自定义事件的触发方法
+
+里面有一句
+var args = {{{[]}}}.slice.call(arguments,0)
+是arguments调用了slice方法，有空可以看看ecma262
+
+里面又引用了一个方法，notify,看名称应该是通知每一个subscriber去执行，notify会传入两个参数
+
+====CE.notify====
+会去执行传入的subscriber函数和对应的参数，根据signature判断传入的参数的多少和类型。
+
+如果执行失败的话，会抛出错误，并会记录到lastError上面。
+
+====Y.u.Subsscriber====
+可以往里面传入fn，obj，还有是否使用这个obj作为fn执行的上下文、或者是使用overrideContext作为上下文，否则就是使用默认的自定义事件里面的上下文
+
+====Y.u.Subscriber.getScope====
+这个方法是为了去获取每一个subscriber的执行上下文
+
+实际上每一个subscriber都可以去定义一个执行的上下文对象
+
+====Y.u.Subscriber.contains====
+上面已提及
+
+===二、Y.u.Event===
+
+start at line 487
+
+
